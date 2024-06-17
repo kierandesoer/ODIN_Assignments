@@ -1,33 +1,27 @@
-const link = document.querySelector("a");
-        link.textContent = "Mozilla Developer Network";
-        link.href = "https://developer.mozilla.org";
+const list = document.querySelector("ul");
+const input = document.querySelector("input");
+const button = document.querySelector("button");
 
-        const sect = document.querySelector("section");
-        const para = document.createElement("p");
-        // ####### Add inline styles ######## //
-        // para.style.color = "white";
-        // para.style.backgroundColor = "black";
-        // para.style.padding = "10px";
-        // para.style.width = "250px";
-        // para.style.textAlign = "center";
-        para.setAttribute("class", "highlight");
+button.addEventListener("click", () => {
+    const itemToAdd = input.value;
+    input.value = '';
 
-        para.textContent = "We hope you enjoyed the ride.";
-        sect.appendChild(para);
+    const listItem = document.createElement("li");
+    const itemSpan = document.createElement("span");
+    const deleteBtn = document.createElement("button");
 
-        const text = document.createTextNode(
-            " - the premier source for web development knowledge."
-        );
+    listItem.appendChild(itemSpan);
+    listItem.appendChild(deleteBtn);
 
-        const linkPara = document.querySelector("p");
-        linkPara.appendChild(text);
-        sect.appendChild(linkPara);
-        //  remove node using node.removeChild()
-        // sect.removeChild(linkPara);
+    itemSpan.textContent= itemToAdd;
+    deleteBtn.textContent ="Delete";
 
-        // remove node by direct reference
-        // linkPara.remove();
+    list.appendChild(listItem);
 
+    deleteBtn.addEventListener("click", () => {
+        list.removeChild(listItem);
+    });
 
+    focus.input;
 
-
+});
