@@ -38,3 +38,5 @@ container.appendChild(h3_tag);
 container.appendChild(new_div);
 
 
+const btn = document.querySelector("#btn");
+btn.onclick = () => alert("Hello World");
