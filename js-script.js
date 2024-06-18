@@ -1,73 +1,28 @@
-// initialize variables and functions 
-const choices = ["rock", "paper", "scissors"];
 
-const winningConditions = {
-    rock: "scissors",
-    paper: "rock",
-    scissors: "paper",
-};
+const container = document.querySelector("#container");
+container.classList.add("container");
 
-let humanChoice = '';
-let humanScore = 0;
-let computerScore = 0;
+function createSketchArea(rows, columns, sketchWidth, sketchHeight) {
+    container.style.height = sketchHeight+"px";
+    container.style.width = sketchWidth+"px";
 
-let getComputerChoice = () => choices[Math.floor(Math.random() * 3)];
+    // Add row divs
+    for (i = 0; i < rows; i++) {
+        const row = document.createElement("div");
+        row.classList.add("row");
 
-// set up buttons
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        humanChoice = button.id.toLowerCase();
-        computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    });
-});
-
-// set up score display
-const resultsDiv = document.querySelector("#results");
-const humanResults = document.createElement("div");
-const computerResults = document.createElement("div");
-resultsDiv.appendChild(humanResults);
-resultsDiv.appendChild(computerResults);
-
-humanResults.textContent = "Your Score: " + humanScore;
-computerResults.textContent = "Computer Score: " + computerScore;
-
-
-let playRound = (humanChoice, computerChoice) => {
-    
-    let message = "";
-
-    if (humanScore != 5 && computerScore != 5){
-        message = "You chose " + humanChoice + ", the computer chose " + computerChoice;
-        
-        if (humanChoice === computerChoice) {
-            message = message + "\nThat was a draw!";
-        } else if ( computerChoice === winningConditions[humanChoice] ) {
-            message = message + "\nYou win!";
-            humanScore++;
-        } else {
-            message = message + "\nYou lose!"
-            computerScore++;
+        // Add column divs
+        for (n = 0; n < columns; n++) {
+            const column = document.createElement("div");
+            column.id = "col_" + n;
+            column.classList.add("column");
+            column.style.width = sketchWidth / columns +"px";
+            column.style.height = sketchHeight / rows +"px";
+            row.appendChild(column);
         }
-        alert(message);
-    }
+        container.appendChild(row);
 
-    if (humanScore === 5 || computerScore === 5) {
-        // update alert with winner/loser message
-        message = (humanScore > computerScore ? "Congratualtions, You won!" : "Better luck next time!");
-        message = message + "\nDo you want to reset the game?";
-        if (confirm(message)){
-            resetGame();
-        };   
     }
-
-    humanResults.textContent = "Your Score: " + humanScore;
-    computerResults.textContent = "Computer Score: " + computerScore;   
 }
 
-let resetGame = () => {
-    humanScore = 0;
-    computerScore = 0;
-}
+createSketchArea(16,16,600,600);
