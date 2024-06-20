@@ -1,21 +1,29 @@
+:root {
+    --pixel_size: 0;
+}
+
 .container {
     margin: auto;
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
 }
+
 .container > * {
     flex: 0 1 auto;
+}
+.navbar {
+    padding: 10px;
 }
 
 .row {
     display: flex;
 }
 
-.column {
+.pixel {
+    width: var(--pixel_size);
+    height: var(--pixel_size);
     box-sizing: border-box;
     border: 1px solid grey;
-    padding: 5px;
+    /* padding: 5px; */
 }
